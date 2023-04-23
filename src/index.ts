@@ -23,7 +23,7 @@ export function run(opts = {} as Omit<RunArgvs, '_'>) {
     default: {
       version: opts.v || opts.version || false,
       help: opts.v || opts.version || false,
-      source: opts.s || opts.source || 'README.md',
+      source: opts.s || opts.source || '',
     }
   })
   if (argvs.h || argvs.help) {
@@ -35,13 +35,19 @@ export function run(opts = {} as Omit<RunArgvs, '_'>) {
     return;
   }
 
-  const renderer = createMarkdownRenderer('.', {}, '/')
-  console.log(renderer.render('# a \n## b \n### c'))
+  if (argvs.s || argvs.source) {
+    const markdown = fs.readFileSync(argvs.source).toString()
+    const renderer = createMarkdownRenderer('.', {}, '/')
+    console.log(renderer.render(markdown))
+  } else {
+    console.log('Missing Parameter "source".')
+    process.exit(1)
+  }
 }
 
 export const cliHelp: string = `\n  Usage: md2html [options] [--help|h]
   Options:\n
-    --source, -s            The path of the target file "README.md". Default: "README.md"
+    --source, -s            The path of the target file "*.md". Default: ""
     --version, -v           Show version number
     --help, -h              Displays help information.
 `;

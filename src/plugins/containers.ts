@@ -38,9 +38,9 @@ function createContainer(
           if (klass === 'details') {
             return `<details class="${klass} custom-block">\n`
           }
-          return `<div class="${klass} custom-block">\n`
+          return `<custom-block class="${klass} custom-block" custom-block-type="${klass}">\n`
         }
-        return klass === 'details' ? '</details>\n' : '</div>\n'
+        return klass === 'details' ? '</details>\n' : '</custom-block>\n'
       }
     }
   ]
