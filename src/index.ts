@@ -1,5 +1,4 @@
-import fs from 'fs-extra';
-import path from 'path';
+import fs from 'fs';
 import minimist, { ParsedArgs } from 'minimist';
 import { createMarkdownRenderer } from './markdown';
 
@@ -54,7 +53,7 @@ export const cliHelp: string = `\n  Usage: md2html [options] [--help|h]
 
 export const exampleHelp: string =`\n  Example:
     \x1b[35mnpm\x1b[0m md2html
-    \x1b[35mnpm\x1b[0m m2h"
+    \x1b[35mnpm\x1b[0m m2h
     \x1b[35mnpm\x1b[0m md2html \x1b[33m--source\x1b[0m README.md
   
 `;
