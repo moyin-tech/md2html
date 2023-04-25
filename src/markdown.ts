@@ -104,7 +104,7 @@ export const createMarkdownRenderer = (
     .use(tablePlugin)
     .use(htmlBlockPlugin)
     .use(paragraphPlugin)
-    .use(lineNumberPlugin)
+    // .use(lineNumberPlugin)
 
   // apply user config
   if (options.config) {
