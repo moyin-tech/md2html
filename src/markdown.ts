@@ -67,14 +67,12 @@ export const createMarkdownRenderer = (
     html: true,
     linkify: true,
     breaks: true,
-    highlight,
     ...options
   }) as MarkdownRenderer
 
   // custom plugins
   md.use(componentPlugin)
     .use(highlightLinePlugin)
-    .use(preWrapperPlugin)
     .use(snippetPlugin, srcDir)
     .use(hoistPlugin)
     .use(containerPlugin)
