@@ -4,7 +4,8 @@ import { createMarkdownRenderer } from './markdown';
 
 export interface RunArgvs extends Omit<ParsedArgs, '_'> {
   version?: string
-  source?: string
+  input?: string
+  output?: string
 }
 export interface PackageJson {
 	engines: {
@@ -17,12 +18,14 @@ export function run(opts = {} as Omit<RunArgvs, '_'>) {
     alias: {
       help: 'h',
       version: 'v',
-      source: 's'
+      input: 'i',
+      output: 'o',
     },
     default: {
       version: opts.v || opts.version || false,
       help: opts.v || opts.version || false,
-      source: opts.s || opts.source || '',
+      input: opts.i || opts.input || '',
+      output: opts.o || opts.output || ''
     }
   })
   if (argvs.h || argvs.help) {
@@ -34,26 +37,31 @@ export function run(opts = {} as Omit<RunArgvs, '_'>) {
     return;
   }
 
-  if (argvs.s || argvs.source) {
-    const markdown = fs.readFileSync(argvs.source).toString()
+  if (argvs.i || argvs.input) {
+    const markdown = fs.readFileSync(argvs.input).toString()
     const renderer = createMarkdownRenderer('.', {}, '/')
-    console.log(renderer.render(markdown))
+    const html = renderer.render(markdown)
+    if (argvs.o || argvs.output) {
+      fs.writeFileSync(argvs.output, html)
+      console.log('Success')
+    } else {
+      console.log(html)
+    }
   } else {
-    console.log('Missing Parameter "source".')
+    console.log('Missing Parameter "input".')
     process.exit(1)
   }
 }
 
-export const cliHelp: string = `\n  Usage: md2html [options] [--help|h]
+export const cliHelp: string = `\n  Usage: md2html [options] [--help|-h]
   Options:\n
-    --source, -s            The path of the target file "*.md". Default: ""
+    --input, -i            The path of the target file "*.md". Default: ""
+    --output, -o            The path of the output file "*.html". Default: ""
     --version, -v           Show version number
     --help, -h              Displays help information.
 `;
 
 export const exampleHelp: string =`\n  Example:
-    \x1b[35mnpm\x1b[0m md2html
-    \x1b[35mnpm\x1b[0m m2h
-    \x1b[35mnpm\x1b[0m md2html \x1b[33m--source\x1b[0m README.md
-  
+    md2html --input README.md
+    m2d --input README.md --output README.html
 `;
