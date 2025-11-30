@@ -58,4 +58,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - This CLI tool is developed and used in production by [Dochelp.cn](https://dochelp.cn/), a help center building platform.
-- **Enjoy using md2html !** Feel free to [contact us](service@moyincloud.com) if you have any questions.
+- **Enjoy using md2html !** Feel free to [contact us](mailto:service@moyincloud.com) if you have any questions.
