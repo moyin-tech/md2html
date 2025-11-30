@@ -33,7 +33,7 @@ Or, if you have multiple commands configured:
 
 ```bash
 md2html [options] <argument>
-m2d [options] <argument>
+m2h [options] <argument>
 ```
 
 ## 📖 Usage
