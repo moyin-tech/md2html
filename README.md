@@ -12,13 +12,13 @@ A powerful markdown to HTML command tool use for production environment.
 ### Via npm (Recommended)
 
 ```bash
-npm install -g moyin-html2pdf
+npm install -g moyin-md2html
 ```
 
 ### Via yarn
 
 ```bash
-yarn global add moyin-html2pdf
+yarn global add moyin-md2html
 ```
 
 ## 🚀 Quick Start
